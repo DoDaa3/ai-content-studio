@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, Save } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Save, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -15,12 +15,15 @@ import { formatDate, getContentTypeLabel } from '@/lib/utils';
 import { toast } from 'sonner';
 
 export default function ProfilePage() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const { data: stats } = useGenerationStats();
   const [fullName, setFullName] = useState(
     user?.user_metadata?.full_name || ''
   );
   const [saving, setSaving] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [deleting, setDeleting] = useState(false);
   const supabase = createClient();
 
   const handleUpdateProfile = async (e: React.FormEvent) => {
@@ -37,6 +40,27 @@ export default function ProfilePage() {
       toast.success('Profile updated');
     }
     setSaving(false);
+  };
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmText !== 'DELETE') return;
+
+    setDeleting(true);
+    try {
+      // Delete all user generations
+      const { error: deleteError } = await supabase
+        .from('generations')
+        .delete()
+        .eq('user_id', user!.id);
+
+      if (deleteError) throw deleteError;
+
+      toast.success('Account data deleted. Signing out...');
+      await signOut();
+    } catch {
+      toast.error('Failed to delete account. Please try again.');
+      setDeleting(false);
+    }
   };
 
   return (
@@ -147,11 +171,73 @@ export default function ProfilePage() {
           <Card className="border-red-500/20">
             <h3 className="font-semibold text-red-500 mb-2">Danger Zone</h3>
             <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-4">
-              Once you delete your account, there is no going back.
+              Once you delete your account, there is no going back. All your
+              generations and data will be permanently removed.
             </p>
-            <Button variant="danger" size="sm" disabled>
-              Delete Account
-            </Button>
+
+            <AnimatePresence mode="wait">
+              {!showDeleteConfirm ? (
+                <motion.div
+                  key="button"
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => setShowDeleteConfirm(true)}
+                  >
+                    Delete Account
+                  </Button>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="confirm"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-3"
+                >
+                  <div className="flex items-start gap-3 rounded-xl bg-red-500/5 border border-red-500/20 p-3">
+                    <AlertTriangle className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-red-500">
+                        This action is irreversible
+                      </p>
+                      <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">
+                        Type <span className="font-mono font-bold text-red-500">DELETE</span> below to confirm.
+                      </p>
+                    </div>
+                  </div>
+                  <Input
+                    placeholder="Type DELETE to confirm"
+                    value={deleteConfirmText}
+                    onChange={(e) => setDeleteConfirmText(e.target.value)}
+                  />
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={handleDeleteAccount}
+                      disabled={deleteConfirmText !== 'DELETE'}
+                      loading={deleting}
+                    >
+                      Permanently Delete Account
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        setShowDeleteConfirm(false);
+                        setDeleteConfirmText('');
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </Card>
         </motion.div>
       </div>
