@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Mail, Calendar, Save } from 'lucide-react';
+import { Calendar, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -70,27 +70,20 @@ export default function ProfilePage() {
           </div>
 
           <form onSubmit={handleUpdateProfile} className="space-y-4">
-            <div className="relative">
-              <User className="absolute left-3 top-9 h-4 w-4 text-text-secondary-light dark:text-text-secondary-dark" />
-              <Input
-                label="Full Name"
-                id="fullName"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="pl-10"
-              />
-            </div>
+            <Input
+              label="Full Name"
+              id="fullName"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
 
-            <div className="relative">
-              <Mail className="absolute left-3 top-9 h-4 w-4 text-text-secondary-light dark:text-text-secondary-dark" />
-              <Input
-                label="Email"
-                id="email"
-                value={user?.email || ''}
-                disabled
-                className="pl-10 opacity-60"
-              />
-            </div>
+            <Input
+              label="Email"
+              id="email"
+              value={user?.email || ''}
+              disabled
+              className="opacity-60"
+            />
 
             <Button type="submit" loading={saving}>
               <Save className="h-4 w-4" />

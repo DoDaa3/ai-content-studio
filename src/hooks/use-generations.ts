@@ -23,9 +23,12 @@ export function useGenerations(filters?: {
       }
 
       if (filters?.search) {
-        query = query.or(
-          `topic.ilike.%${filters.search}%,generated_content.ilike.%${filters.search}%`
-        );
+        const sanitized = filters.search.replace(/[%_,().]/g, '');
+        if (sanitized) {
+          query = query.or(
+            `topic.ilike.%${sanitized}%,generated_content.ilike.%${sanitized}%`
+          );
+        }
       }
 
       const { data, error } = await query;

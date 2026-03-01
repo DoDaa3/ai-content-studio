@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -27,6 +27,14 @@ import {
 import { toast } from 'sonner';
 
 export default function GeneratePage() {
+  return (
+    <Suspense fallback={null}>
+      <GeneratePageContent />
+    </Suspense>
+  );
+}
+
+function GeneratePageContent() {
   const searchParams = useSearchParams();
   const initialType = (searchParams.get('type') as ContentType) || 'blog-post';
 
@@ -52,6 +60,15 @@ export default function GeneratePage() {
     const type = searchParams.get('type') as ContentType | null;
     if (type) setContentType(type);
   }, [searchParams]);
+
+  // Abort streaming request on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   const buildInput = useCallback((): GenerationInput => {
     return {

@@ -87,8 +87,8 @@ export default function HistoryPage() {
             ))}
           </div>
         ) : generations && generations.length > 0 ? (
-          <AnimatePresence mode="popLayout">
-            <div className="space-y-3">
+          <div className="space-y-3">
+            <AnimatePresence mode="popLayout">
               {generations.map((gen) => (
                 <HistoryCard
                   key={gen.id}
@@ -97,8 +97,8 @@ export default function HistoryPage() {
                   isDeleting={deletingId === gen.id}
                 />
               ))}
-            </div>
-          </AnimatePresence>
+            </AnimatePresence>
+          </div>
         ) : (
           <EmptyState
             icon={Clock}
