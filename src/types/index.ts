@@ -138,7 +138,7 @@ export const SOCIAL_PLATFORMS: { id: SocialPlatform; label: string }[] = [
   { id: 'linkedin', label: 'LinkedIn' },
 ];
 
-export type AIModel = 'gemini-2.5-flash' | 'gemini-3-flash' | 'gemini-2.5-flash-lite';
+export type AIModel = 'gemini-2.5-flash' | 'gemini-3-flash-preview' | 'gemini-2.5-flash-lite';
 
 export interface AIModelOption {
   id: AIModel;
@@ -148,6 +148,6 @@ export interface AIModelOption {
 
 export const AI_MODELS: AIModelOption[] = [
   { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash', description: 'Balanced speed & quality' },
-  { id: 'gemini-3-flash', label: 'Gemini 3 Flash', description: 'Latest model' },
+  { id: 'gemini-3-flash-preview', label: 'Gemini 3 Flash', description: 'Latest model' },
   { id: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash Lite', description: 'Fastest, higher rate limits' },
 ];

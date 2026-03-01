@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const systemPrompt = buildSystemPrompt(body);
     const userPrompt = buildUserPrompt(body);
 
-    const ALLOWED_MODELS: AIModel[] = ['gemini-2.5-flash', 'gemini-3-flash', 'gemini-2.5-flash-lite'];
+    const ALLOWED_MODELS: AIModel[] = ['gemini-2.5-flash', 'gemini-3-flash-preview', 'gemini-2.5-flash-lite'];
     const selectedModel = body.model && ALLOWED_MODELS.includes(body.model) ? body.model : 'gemini-2.5-flash';
 
     const model = genAI.getGenerativeModel({
