@@ -147,6 +147,25 @@ function GeneratePageContent() {
 
       setIsStreaming(false);
       setIsGenerating(false);
+
+      // Auto-save to history
+      if (fullContent) {
+        try {
+          await saveGeneration.mutateAsync({
+            content_type: input.contentType,
+            tone: input.tone,
+            length: input.length,
+            topic: input.topic,
+            additional_context: input.additionalContext || null,
+            target_audience: input.targetAudience || null,
+            generated_content: fullContent,
+            is_saved: false,
+          });
+          setIsSaved(true);
+        } catch {
+          // Silent fail for auto-save — user can still manually save
+        }
+      }
     } catch (error) {
       if (error instanceof DOMException && error.name === 'AbortError') {
         return;
@@ -157,7 +176,7 @@ function GeneratePageContent() {
       setIsStreaming(false);
       setIsGenerating(false);
     }
-  }, [topic, buildInput]);
+  }, [topic, buildInput, saveGeneration]);
 
   const handleSave = useCallback(async () => {
     if (!generatedContent) return;

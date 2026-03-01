@@ -94,9 +94,12 @@ export function useSaveGeneration() {
     mutationFn: async (
       generation: Omit<Generation, 'id' | 'user_id' | 'created_at'>
     ) => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Not authenticated');
+
       const { data, error } = await supabase
         .from('generations')
-        .insert(generation)
+        .insert({ ...generation, user_id: user.id })
         .select()
         .single();
 
