@@ -72,13 +72,13 @@ export default function DashboardPage() {
                 <TrendingUp className="h-5 w-5 text-accent" />
               </div>
               <div>
-                <p className="text-2xl font-bold">
+                <div className="text-2xl font-bold">
                   {loadingStats ? (
                     <Skeleton className="h-7 w-12" />
                   ) : (
                     stats?.total || 0
                   )}
-                </p>
+                </div>
                 <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
                   Total Generations
                 </p>
@@ -92,7 +92,7 @@ export default function DashboardPage() {
                 <BarChart3 className="h-5 w-5 text-purple-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold">
+                <div className="text-2xl font-bold">
                   {loadingStats ? (
                     <Skeleton className="h-7 w-20" />
                   ) : stats?.mostUsedType ? (
@@ -100,7 +100,7 @@ export default function DashboardPage() {
                   ) : (
                     '—'
                   )}
-                </p>
+                </div>
                 <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
                   Most Used Type
                 </p>
@@ -114,7 +114,7 @@ export default function DashboardPage() {
                 <Clock className="h-5 w-5 text-green-500" />
               </div>
               <div>
-                <p className="text-2xl font-bold">
+                <div className="text-2xl font-bold">
                   {loadingRecent ? (
                     <Skeleton className="h-7 w-20" />
                   ) : recent && recent.length > 0 ? (
@@ -122,7 +122,7 @@ export default function DashboardPage() {
                   ) : (
                     '—'
                   )}
-                </p>
+                </div>
                 <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
                   Last Generation
                 </p>
