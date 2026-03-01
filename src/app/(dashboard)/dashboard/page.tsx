@@ -68,8 +68,8 @@ export default function DashboardPage() {
         >
           <motion.div variants={fadeIn}>
             <Card className="flex items-center gap-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 flex-shrink-0">
-                <TrendingUp className="h-5 w-5 text-accent" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 flex-shrink-0">
+                <TrendingUp className="h-5 w-5 text-emerald-500" />
               </div>
               <div>
                 <div className="text-2xl font-bold">
@@ -88,8 +88,8 @@ export default function DashboardPage() {
 
           <motion.div variants={fadeIn}>
             <Card className="flex items-center gap-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 flex-shrink-0">
-                <BarChart3 className="h-5 w-5 text-purple-500" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/10 flex-shrink-0">
+                <BarChart3 className="h-5 w-5 text-teal-500" />
               </div>
               <div>
                 <div className="text-2xl font-bold">
@@ -110,8 +110,8 @@ export default function DashboardPage() {
 
           <motion.div variants={fadeIn}>
             <Card className="flex items-center gap-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10 flex-shrink-0">
-                <Clock className="h-5 w-5 text-green-500" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/10 flex-shrink-0">
+                <Clock className="h-5 w-5 text-cyan-500" />
               </div>
               <div>
                 <div className="text-2xl font-bold">
@@ -169,7 +169,7 @@ export default function DashboardPage() {
             <div className="space-y-3">
               {Array.from({ length: 3 }).map((_, i) => (
                 <Card key={i} className="flex items-center gap-4">
-                  <Skeleton className="h-10 w-10 rounded-lg" />
+                  <Skeleton className="h-10 w-10 rounded-xl" />
                   <div className="flex-1 space-y-2">
                     <Skeleton className="h-4 w-1/3" />
                     <Skeleton className="h-3 w-2/3" />
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium text-accent">
+                        <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                           {getContentTypeLabel(gen.content_type)}
                         </span>
                         <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">

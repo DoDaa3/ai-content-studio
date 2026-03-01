@@ -12,7 +12,7 @@ import {
   LogOut,
   Menu,
   X,
-  Sparkles,
+  Leaf,
 } from 'lucide-react';
 import { useAuth } from '@/providers/auth-provider';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
@@ -34,11 +34,11 @@ export function Sidebar() {
     <div className="flex h-full flex-col">
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 py-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-bg">
-          <Sparkles className="h-5 w-5 text-white" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl gradient-bg shadow-md shadow-emerald-500/20">
+          <Leaf className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h1 className="text-base font-bold">ContentStudio</h1>
+          <h1 className="text-base font-bold tracking-tight">ContentStudio</h1>
           <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
             AI Content Generator
           </p>
@@ -55,16 +55,16 @@ export function Sidebar() {
               href={item.href}
               onClick={() => setMobileOpen(false)}
               className={cn(
-                'relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                'relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all',
                 isActive
-                  ? 'text-accent'
+                  ? 'text-emerald-600 dark:text-emerald-400'
                   : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-light dark:hover:bg-surface-dark'
               )}
             >
               {isActive && (
                 <motion.div
                   layoutId="sidebar-active"
-                  className="absolute inset-0 rounded-lg bg-accent/10"
+                  className="absolute inset-0 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/10"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
                 />
               )}
@@ -80,7 +80,7 @@ export function Sidebar() {
         <ThemeToggle />
         <button
           onClick={signOut}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-red-500 hover:bg-red-500/10 transition-colors cursor-pointer"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-red-500 hover:bg-red-500/10 transition-all cursor-pointer"
         >
           <LogOut className="h-4.5 w-4.5" />
           Sign Out
@@ -94,7 +94,7 @@ export function Sidebar() {
       {/* Mobile toggle */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="fixed top-4 left-4 z-50 lg:hidden rounded-lg glass-card p-2 cursor-pointer"
+        className="fixed top-4 left-4 z-50 lg:hidden rounded-xl glass-card p-2 cursor-pointer"
         aria-label="Open menu"
       >
         <Menu className="h-5 w-5" />

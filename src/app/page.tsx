@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
-  Sparkles,
+  Leaf,
   PenTool,
   Zap,
   Clock,
@@ -61,22 +61,22 @@ const contentTypes = [
   {
     icon: FileText,
     label: 'Blog Posts',
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-emerald-500 to-teal-500',
   },
   {
     icon: Mail,
     label: 'Emails',
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-teal-500 to-cyan-500',
   },
   {
     icon: MessageSquare,
     label: 'Social Media',
-    color: 'from-orange-500 to-red-500',
+    color: 'from-emerald-400 to-green-500',
   },
   {
     icon: Megaphone,
     label: 'Ad Copy',
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-green-500 to-emerald-600',
   },
 ];
 
@@ -87,10 +87,10 @@ export default function LandingPage() {
       <header className="fixed top-0 left-0 right-0 z-50 glass">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg gradient-bg">
-              <Sparkles className="h-4 w-4 text-white" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl gradient-bg shadow-sm shadow-emerald-500/20">
+              <Leaf className="h-4 w-4 text-white" />
             </div>
-            <span className="font-bold text-lg">ContentStudio</span>
+            <span className="font-bold text-lg tracking-tight">ContentStudio</span>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
@@ -113,8 +113,8 @@ export default function LandingPage() {
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/20 rounded-full blur-[128px]" />
-          <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-[128px]" />
+          <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-[100px]" />
         </div>
 
         <motion.div
@@ -127,7 +127,7 @@ export default function LandingPage() {
             variants={fadeInUp}
             className="inline-flex items-center gap-2 rounded-full border bg-card-light dark:bg-card-dark px-4 py-1.5 text-sm mb-6"
           >
-            <Sparkles className="h-3.5 w-3.5 text-accent" />
+            <Leaf className="h-3.5 w-3.5 text-emerald-500" />
             Powered by Gemini AI
           </motion.div>
 
@@ -214,10 +214,10 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="glass-card rounded-xl p-6"
+                className="glass-card rounded-2xl p-6"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 mb-4">
-                  <feature.icon className="h-5 w-5 text-accent" />
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 mb-4">
+                  <feature.icon className="h-5 w-5 text-emerald-500" />
                 </div>
                 <h3 className="font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
@@ -275,7 +275,7 @@ export default function LandingPage() {
                 transition={{ delay: i * 0.15 }}
                 className="text-center"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full gradient-bg text-white font-bold text-sm mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl gradient-bg text-white font-bold text-sm mb-4 shadow-md shadow-emerald-500/20">
                   {item.step}
                 </div>
                 <h3 className="font-semibold mb-2">{item.title}</h3>
@@ -294,7 +294,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto text-center rounded-2xl gradient-bg p-12 relative overflow-hidden"
+          className="max-w-3xl mx-auto text-center rounded-3xl gradient-bg p-12 relative overflow-hidden shadow-2xl shadow-emerald-500/20"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent)]" />
           <div className="relative">
@@ -309,7 +309,7 @@ export default function LandingPage() {
               <Button
                 variant="secondary"
                 size="lg"
-                className="bg-white text-accent hover:bg-white/90"
+                className="bg-white text-emerald-600 hover:bg-white/90 border-0"
               >
                 Get Started for Free
                 <ArrowRight className="h-4 w-4" />
@@ -323,7 +323,7 @@ export default function LandingPage() {
       <footer className="border-t py-8 px-6">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-accent" />
+            <Leaf className="h-4 w-4 text-emerald-500" />
             <span className="text-sm font-medium">ContentStudio</span>
           </div>
           <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">

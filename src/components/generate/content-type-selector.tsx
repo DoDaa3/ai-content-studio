@@ -26,10 +26,10 @@ export function ContentTypeSelector({
             whileTap={{ scale: 0.98 }}
             onClick={() => onChange(type.id)}
             className={cn(
-              'relative flex flex-col items-start gap-1 rounded-xl border p-4 text-left transition-colors cursor-pointer',
+              'relative flex flex-col items-start gap-1.5 rounded-2xl border p-4 text-left transition-all cursor-pointer',
               value === type.id
-                ? 'border-accent bg-accent/5 ring-1 ring-accent/20'
-                : 'border-border-light dark:border-border-dark hover:border-accent/40 hover:bg-surface-light dark:hover:bg-surface-dark'
+                ? 'border-emerald-500 bg-emerald-500/5 ring-1 ring-emerald-500/20 shadow-sm shadow-emerald-500/5'
+                : 'border-border-light dark:border-border-dark hover:border-emerald-500/30 hover:bg-surface-light dark:hover:bg-surface-dark'
             )}
           >
             <span className="text-xl">{type.icon}</span>

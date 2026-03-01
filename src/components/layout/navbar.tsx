@@ -16,7 +16,7 @@ export function Navbar() {
             {user?.email}
           </p>
         </div>
-        <div className="flex h-8 w-8 items-center justify-center rounded-full gradient-bg text-white text-sm font-bold">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl gradient-bg text-white text-sm font-bold shadow-sm shadow-emerald-500/20">
           {(
             user?.user_metadata?.full_name?.[0] ||
             user?.email?.[0] ||

@@ -18,12 +18,12 @@ export function Card({
 }: CardProps) {
   return (
     <motion.div
-      whileHover={hover ? { y: -2, scale: 1.01 } : undefined}
+      whileHover={hover ? { y: -3, scale: 1.01 } : undefined}
       transition={{ duration: 0.2 }}
       onClick={onClick}
       className={cn(
-        'glass-card rounded-xl p-6',
-        hover && 'cursor-pointer',
+        'glass-card rounded-2xl p-6',
+        hover && 'cursor-pointer hover:shadow-md hover:shadow-emerald-500/5 dark:hover:shadow-emerald-500/5 transition-shadow',
         className
       )}
     >

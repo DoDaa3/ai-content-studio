@@ -52,21 +52,21 @@ export function OutputDisplay({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="glass-card rounded-xl overflow-hidden"
+      className="glass-card rounded-2xl overflow-hidden"
     >
       {/* Toolbar */}
-      <div className="flex items-center justify-between border-b px-4 py-3">
+      <div className="flex items-center justify-between border-b px-5 py-3">
         <div className="flex items-center gap-4 text-xs text-text-secondary-light dark:text-text-secondary-dark">
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1.5">
             <Type className="h-3.5 w-3.5" />
             {countWords(content)} words
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1.5">
             <Hash className="h-3.5 w-3.5" />
             {countCharacters(content)} chars
           </span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <Button
             variant="ghost"
             size="sm"
@@ -74,7 +74,7 @@ export function OutputDisplay({
             disabled={isStreaming}
           >
             {copied ? (
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-emerald-500" />
             ) : (
               <Copy className="h-4 w-4" />
             )}
@@ -98,7 +98,7 @@ export function OutputDisplay({
             loading={isSaving}
           >
             {isSaved ? (
-              <BookmarkCheck className="h-4 w-4 text-accent" />
+              <BookmarkCheck className="h-4 w-4 text-emerald-500" />
             ) : (
               <Bookmark className="h-4 w-4" />
             )}
@@ -115,7 +115,7 @@ export function OutputDisplay({
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.5, repeat: Infinity }}
-              className="inline-block w-0.5 h-5 bg-accent ml-0.5 align-text-bottom"
+              className="inline-block w-0.5 h-5 bg-emerald-500 ml-0.5 align-text-bottom rounded-full"
             />
           )}
         </div>

@@ -52,7 +52,7 @@ export default function ProfilePage() {
         {/* Profile card */}
         <Card>
           <div className="flex items-center gap-4 mb-6">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full gradient-bg text-white text-2xl font-bold">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl gradient-bg text-white text-2xl font-bold shadow-lg shadow-emerald-500/20">
               {(
                 user?.user_metadata?.full_name?.[0] ||
                 user?.email?.[0] ||

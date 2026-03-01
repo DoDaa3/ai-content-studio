@@ -3,21 +3,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-background-dark: #0A0A0B;
-  --color-background-light: #FAFAFA;
-  --color-card-dark: #141415;
+  --color-background-dark: #09090B;
+  --color-background-light: #FAFDFB;
+  --color-card-dark: #111214;
   --color-card-light: #FFFFFF;
-  --color-accent: #6366F1;
-  --color-accent-light: #818CF8;
-  --color-accent-dark: #4F46E5;
-  --color-border-dark: #1E1E20;
-  --color-border-light: #E5E7EB;
-  --color-text-primary-dark: #F9FAFB;
-  --color-text-primary-light: #111827;
-  --color-text-secondary-dark: #9CA3AF;
-  --color-text-secondary-light: #6B7280;
-  --color-surface-dark: #1A1A1C;
-  --color-surface-light: #F3F4F6;
+  --color-accent: #10B981;
+  --color-accent-light: #34D399;
+  --color-accent-dark: #059669;
+  --color-border-dark: #1C1E22;
+  --color-border-light: #E2E8F0;
+  --color-text-primary-dark: #F1F5F9;
+  --color-text-primary-light: #0F172A;
+  --color-text-secondary-dark: #94A3B8;
+  --color-text-secondary-light: #64748B;
+  --color-surface-dark: #16181C;
+  --color-surface-light: #F1F5F9;
 }
 
 @layer base {
@@ -51,18 +51,22 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent;
   }
 
   .gradient-bg {
-    @apply bg-gradient-to-r from-accent to-purple-500;
+    @apply bg-gradient-to-r from-emerald-500 to-teal-500;
+  }
+
+  .gradient-bg-subtle {
+    @apply bg-gradient-to-br from-emerald-500/10 to-teal-500/10;
   }
 
   .shimmer {
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(99, 102, 241, 0.08) 50%,
+      rgba(16, 185, 129, 0.06) 50%,
       transparent 100%
     );
     background-size: 200% 100%;
@@ -95,4 +99,13 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-emerald-500/20 text-emerald-900;
+}
+
+.dark ::selection {
+  @apply bg-emerald-500/30 text-emerald-100;
 }

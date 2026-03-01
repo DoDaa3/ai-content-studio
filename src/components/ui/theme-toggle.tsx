@@ -14,15 +14,15 @@ export function ThemeToggle() {
   ];
 
   return (
-    <div className="flex items-center gap-1 rounded-lg bg-surface-light dark:bg-surface-dark p-1">
+    <div className="flex items-center gap-1 rounded-xl bg-surface-light dark:bg-surface-dark p-1">
       {options.map(({ value, icon: Icon, label }) => (
         <button
           key={value}
           onClick={() => setTheme(value)}
           className={cn(
-            'flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors cursor-pointer',
+            'flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all cursor-pointer',
             theme === value
-              ? 'bg-white dark:bg-card-dark text-text-primary-light dark:text-text-primary-dark shadow-sm'
+              ? 'bg-white dark:bg-card-dark text-accent shadow-sm'
               : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark'
           )}
           aria-label={`Switch to ${label} theme`}

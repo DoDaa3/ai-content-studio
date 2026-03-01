@@ -20,9 +20,9 @@ export function ToneSelector({ value, onChange }: ToneSelectorProps) {
             key={tone.id}
             onClick={() => onChange(tone.id)}
             className={cn(
-              'rounded-full px-4 py-1.5 text-sm font-medium transition-colors cursor-pointer',
+              'rounded-xl px-4 py-1.5 text-sm font-medium transition-all cursor-pointer',
               value === tone.id
-                ? 'gradient-bg text-white'
+                ? 'gradient-bg text-white shadow-sm shadow-emerald-500/20'
                 : 'bg-surface-light dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark border border-border-light dark:border-border-dark'
             )}
           >

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Sparkles, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Leaf, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { createClient } from '@/lib/supabase/client';
@@ -61,6 +61,11 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
+      {/* Background gradient */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]" />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -69,8 +74,8 @@ export default function LoginPage() {
       >
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl gradient-bg mb-4">
-            <Sparkles className="h-6 w-6 text-white" />
+          <div className="flex h-13 w-13 items-center justify-center rounded-2xl gradient-bg mb-4 shadow-lg shadow-emerald-500/20">
+            <Leaf className="h-7 w-7 text-white" />
           </div>
           <h1 className="text-2xl font-bold">Welcome back</h1>
           <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
@@ -120,7 +125,7 @@ export default function LoginPage() {
         {/* Email form */}
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary-light dark:text-text-secondary-dark" />
+            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary-light dark:text-text-secondary-dark" />
             <Input
               type="email"
               placeholder="you@example.com"
@@ -132,7 +137,7 @@ export default function LoginPage() {
           </div>
 
           <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary-light dark:text-text-secondary-dark" />
+            <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary-light dark:text-text-secondary-dark" />
             <Input
               type={showPassword ? 'text' : 'password'}
               placeholder="Your password"
@@ -144,7 +149,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark cursor-pointer"
             >
               {showPassword ? (
                 <EyeOff className="h-4 w-4" />
@@ -168,7 +173,7 @@ export default function LoginPage() {
           Don&apos;t have an account?{' '}
           <Link
             href="/signup"
-            className="text-accent hover:text-accent-light font-medium"
+            className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 font-medium"
           >
             Sign up
           </Link>

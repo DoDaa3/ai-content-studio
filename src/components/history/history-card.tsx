@@ -44,7 +44,7 @@ export function HistoryCard({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className="glass-card rounded-xl overflow-hidden"
+      className="glass-card rounded-2xl overflow-hidden"
     >
       {/* Header */}
       <div
@@ -57,7 +57,7 @@ export function HistoryCard({
           </span>
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-accent">
+              <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 {getContentTypeLabel(generation.content_type)}
               </span>
               <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
@@ -93,21 +93,21 @@ export function HistoryCard({
             <div className="border-t px-4 py-4">
               {/* Metadata */}
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="inline-flex items-center rounded-full bg-surface-light dark:bg-surface-dark px-2.5 py-0.5 text-xs">
+                <span className="inline-flex items-center rounded-lg bg-surface-light dark:bg-surface-dark px-2.5 py-1 text-xs font-medium">
                   Tone: {generation.tone}
                 </span>
-                <span className="inline-flex items-center rounded-full bg-surface-light dark:bg-surface-dark px-2.5 py-0.5 text-xs">
+                <span className="inline-flex items-center rounded-lg bg-surface-light dark:bg-surface-dark px-2.5 py-1 text-xs font-medium">
                   Length: {generation.length}
                 </span>
                 {generation.target_audience && (
-                  <span className="inline-flex items-center rounded-full bg-surface-light dark:bg-surface-dark px-2.5 py-0.5 text-xs">
+                  <span className="inline-flex items-center rounded-lg bg-surface-light dark:bg-surface-dark px-2.5 py-1 text-xs font-medium">
                     Audience: {generation.target_audience}
                   </span>
                 )}
               </div>
 
               {/* Generated content */}
-              <div className="rounded-lg bg-surface-light dark:bg-surface-dark p-4 text-sm whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto">
+              <div className="rounded-xl bg-surface-light dark:bg-surface-dark p-4 text-sm whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto">
                 {generation.generated_content}
               </div>
 
@@ -115,7 +115,7 @@ export function HistoryCard({
               <div className="flex items-center justify-end gap-2 mt-3">
                 <Button variant="ghost" size="sm" onClick={handleCopy}>
                   {copied ? (
-                    <Check className="h-4 w-4 text-green-500" />
+                    <Check className="h-4 w-4 text-emerald-500" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
