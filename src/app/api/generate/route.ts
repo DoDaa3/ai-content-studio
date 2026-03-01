@@ -1,10 +1,8 @@
-import Anthropic from '@anthropic-ai/sdk';
-import { buildSystemPrompt, buildUserPrompt } from '@/lib/anthropic';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { buildSystemPrompt, buildUserPrompt } from '@/lib/prompts';
 import type { GenerationInput } from '@/types';
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || '');
 
 export async function POST(request: Request) {
   try {
@@ -28,29 +26,22 @@ export async function POST(request: Request) {
     const systemPrompt = buildSystemPrompt(body);
     const userPrompt = buildUserPrompt(body);
 
-    const stream = anthropic.messages.stream({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2048,
-      system: systemPrompt,
-      messages: [
-        {
-          role: 'user',
-          content: userPrompt,
-        },
-      ],
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.0-flash',
+      systemInstruction: systemPrompt,
     });
+
+    const result = await model.generateContentStream(userPrompt);
 
     const readableStream = new ReadableStream({
       async start(controller) {
         const encoder = new TextEncoder();
 
         try {
-          for await (const event of stream) {
-            if (
-              event.type === 'content_block_delta' &&
-              event.delta.type === 'text_delta'
-            ) {
-              controller.enqueue(encoder.encode(event.delta.text));
+          for await (const chunk of result.stream) {
+            const text = chunk.text();
+            if (text) {
+              controller.enqueue(encoder.encode(text));
             }
           }
           controller.close();
@@ -75,14 +66,16 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Generation error:', error);
 
-    if (error instanceof Anthropic.RateLimitError) {
+    const message = error instanceof Error ? error.message : '';
+
+    if (message.includes('429') || message.includes('RESOURCE_EXHAUSTED')) {
       return Response.json(
         { error: 'Rate limit exceeded. Please try again in a moment.' },
         { status: 429 }
       );
     }
 
-    if (error instanceof Anthropic.AuthenticationError) {
+    if (message.includes('API_KEY_INVALID') || message.includes('401')) {
       return Response.json(
         { error: 'API authentication failed. Please check your API key.' },
         { status: 401 }
