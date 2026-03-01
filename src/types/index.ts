@@ -29,6 +29,7 @@ export interface GenerationInput {
   length: ContentLength;
   additionalContext?: string;
   targetAudience?: string;
+  model?: AIModel;
 }
 
 export interface Generation {
@@ -135,4 +136,18 @@ export const SOCIAL_PLATFORMS: { id: SocialPlatform; label: string }[] = [
   { id: 'instagram', label: 'Instagram' },
   { id: 'twitter', label: 'Twitter/X' },
   { id: 'linkedin', label: 'LinkedIn' },
+];
+
+export type AIModel = 'gemini-2.5-flash' | 'gemini-3-flash' | 'gemini-2.5-flash-lite';
+
+export interface AIModelOption {
+  id: AIModel;
+  label: string;
+  description: string;
+}
+
+export const AI_MODELS: AIModelOption[] = [
+  { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash', description: 'Balanced speed & quality' },
+  { id: 'gemini-3-flash', label: 'Gemini 3 Flash', description: 'Latest model' },
+  { id: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash Lite', description: 'Fastest, higher rate limits' },
 ];

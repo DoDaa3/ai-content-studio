@@ -20,9 +20,11 @@ import {
   type ContentLength,
   type EmailSubType,
   type SocialPlatform,
+  type AIModel,
   type GenerationInput,
   EMAIL_SUBTYPES,
   SOCIAL_PLATFORMS,
+  AI_MODELS,
 } from '@/types';
 import { toast } from 'sonner';
 
@@ -46,6 +48,7 @@ function GeneratePageContent() {
   const [length, setLength] = useState<ContentLength>('medium');
   const [additionalContext, setAdditionalContext] = useState('');
   const [targetAudience, setTargetAudience] = useState('');
+  const [model, setModel] = useState<AIModel>('gemini-2.5-flash');
 
   const [generatedContent, setGeneratedContent] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -80,6 +83,7 @@ function GeneratePageContent() {
       length,
       additionalContext: additionalContext || undefined,
       targetAudience: targetAudience || undefined,
+      model,
     };
   }, [
     contentType,
@@ -90,6 +94,7 @@ function GeneratePageContent() {
     length,
     additionalContext,
     targetAudience,
+    model,
   ]);
 
   const generate = useCallback(async () => {
@@ -249,6 +254,17 @@ function GeneratePageContent() {
             rows={3}
             value={additionalContext}
             onChange={(e) => setAdditionalContext(e.target.value)}
+          />
+
+          {/* AI Model */}
+          <Select
+            label="AI Model"
+            value={model}
+            onChange={(e) => setModel(e.target.value as AIModel)}
+            options={AI_MODELS.map((m) => ({
+              value: m.id,
+              label: `${m.label} — ${m.description}`,
+            }))}
           />
 
           {/* Generate button */}

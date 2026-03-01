@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { buildSystemPrompt, buildUserPrompt } from '@/lib/prompts';
-import type { GenerationInput } from '@/types';
+import type { GenerationInput, AIModel } from '@/types';
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || '');
 
@@ -26,8 +26,11 @@ export async function POST(request: Request) {
     const systemPrompt = buildSystemPrompt(body);
     const userPrompt = buildUserPrompt(body);
 
+    const ALLOWED_MODELS: AIModel[] = ['gemini-2.5-flash', 'gemini-3-flash', 'gemini-2.5-flash-lite'];
+    const selectedModel = body.model && ALLOWED_MODELS.includes(body.model) ? body.model : 'gemini-2.5-flash';
+
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.5-flash',
+      model: selectedModel,
       systemInstruction: systemPrompt,
     });
 
