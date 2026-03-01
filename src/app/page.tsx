@@ -110,11 +110,11 @@ export default function LandingPage() {
       </header>
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-32 pb-20 px-6">
         {/* Background gradient */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-[128px]" />
-          <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 -z-10 overflow-visible">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-500/15 rounded-full blur-[160px]" />
+          <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[140px]" />
         </div>
 
         <motion.div
