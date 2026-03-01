@@ -143,9 +143,9 @@ export default function DashboardPage() {
                 transition={{ delay: i * 0.05 }}
               >
                 <Link href={`/generate?type=${type.id}`}>
-                  <Card hover className="text-center py-5">
+                  <Card hover className="text-center py-5 px-2">
                     <span className="text-2xl mb-2 block">{type.icon}</span>
-                    <span className="text-xs font-medium">{type.label}</span>
+                    <span className="text-xs font-medium truncate block">{type.label}</span>
                   </Card>
                 </Link>
               </motion.div>
