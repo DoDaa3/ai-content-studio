@@ -11,6 +11,7 @@ import {
   Type,
   Hash,
 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
 import { countWords, countCharacters } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -109,8 +110,8 @@ export function OutputDisplay({
 
       {/* Content */}
       <div className="p-6">
-        <div className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap leading-relaxed">
-          {content}
+        <div className="prose prose-sm dark:prose-invert max-w-none leading-relaxed">
+          <ReactMarkdown>{content}</ReactMarkdown>
           {isStreaming && (
             <motion.span
               animate={{ opacity: [1, 0] }}

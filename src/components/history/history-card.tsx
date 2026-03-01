@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, Copy, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
 import {
   formatRelativeDate,
@@ -107,8 +108,8 @@ export function HistoryCard({
               </div>
 
               {/* Generated content */}
-              <div className="rounded-xl bg-surface-light dark:bg-surface-dark p-4 text-sm whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto">
-                {generation.generated_content}
+              <div className="rounded-xl bg-surface-light dark:bg-surface-dark p-4 text-sm leading-relaxed max-h-80 overflow-y-auto prose prose-sm dark:prose-invert max-w-none">
+                <ReactMarkdown>{generation.generated_content}</ReactMarkdown>
               </div>
 
               {/* Actions */}
