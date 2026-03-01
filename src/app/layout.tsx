@@ -8,7 +8,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'ContentStudio — AI-Powered Content Generation',
   description:
-    'Create stunning blog posts, emails, social media captions, and more with AI. Powered by Claude.',
+    'Create stunning blog posts, emails, social media captions, and more with AI. Powered by Gemini.',
   keywords: [
     'AI content generator',
     'content creation',

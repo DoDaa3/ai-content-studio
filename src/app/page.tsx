@@ -41,7 +41,7 @@ const features = [
     icon: Zap,
     title: 'Real-time Streaming',
     description:
-      'Watch your content generate word by word with Claude AI — fast, natural, and engaging.',
+      'Watch your content generate word by word with Gemini AI — fast, natural, and engaging.',
   },
   {
     icon: Clock,
@@ -128,7 +128,7 @@ export default function LandingPage() {
             className="inline-flex items-center gap-2 rounded-full border bg-card-light dark:bg-card-dark px-4 py-1.5 text-sm mb-6"
           >
             <Sparkles className="h-3.5 w-3.5 text-accent" />
-            Powered by Claude AI
+            Powered by Gemini AI
           </motion.div>
 
           <motion.h1
@@ -327,7 +327,7 @@ export default function LandingPage() {
             <span className="text-sm font-medium">ContentStudio</span>
           </div>
           <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
-            Built with Next.js, Tailwind CSS, and Claude AI
+            Built with Next.js, Tailwind CSS, and Gemini AI
           </p>
         </div>
       </footer>
