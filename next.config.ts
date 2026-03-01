@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  transpilePackages: ['react-markdown'],
 };
 
 export default nextConfig;
