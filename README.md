@@ -1,13 +1,13 @@
 # ContentStudio — AI-Powered Content Generation Platform
 
-A full-stack AI content generation platform built with Next.js, Tailwind CSS, Supabase, and the Anthropic Claude API. Generate blog posts, emails, social media captions, product descriptions, ad copy, and more — with real-time streaming output.
+A full-stack AI content generation platform built with Next.js, Tailwind CSS, Supabase, and the Google Gemini API. Generate blog posts, emails, social media captions, product descriptions, ad copy, and more — with real-time streaming output.
 
 ## Tech Stack
 
 - **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
-- **AI:** Anthropic Claude API (claude-sonnet-4-20250514)
+- **AI:** Google Gemini API (gemini-2.5-flash, gemini-3-flash-preview, gemini-2.5-flash-lite)
 - **Database & Auth:** Supabase (PostgreSQL + Auth + RLS)
 - **Animations:** Framer Motion
 - **Data Fetching:** TanStack Query (React Query)
@@ -32,7 +32,7 @@ A full-stack AI content generation platform built with Next.js, Tailwind CSS, Su
 - **Node.js 18+** — Download from [nodejs.org](https://nodejs.org)
 - **npm** (comes with Node.js) or **yarn**
 - **Supabase account** — Free tier at [supabase.com](https://supabase.com)
-- **Anthropic API key** — Get one at [console.anthropic.com](https://console.anthropic.com)
+- **Google Gemini API key** — Get one at [aistudio.google.com](https://aistudio.google.com/app/apikey)
 
 ---
 
@@ -99,8 +99,8 @@ cp .env.local.example .env.local
 Open `.env.local` in your editor and fill in the three values:
 
 ```env
-# Your Anthropic API key (from console.anthropic.com > API Keys)
-ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxxx
+# Your Google Gemini API key (from aistudio.google.com > Get API key)
+GOOGLE_GEMINI_API_KEY=AIzaSyxxxxxxxxxxxxxxxxxxxxx
 
 # Your Supabase project URL (from Step 3)
 NEXT_PUBLIC_SUPABASE_URL=https://abcdefgh.supabase.co
@@ -113,7 +113,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxx
 
 | Variable | Where to get it |
 |----------|----------------|
-| `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com) → API Keys → Create Key |
+| `GOOGLE_GEMINI_API_KEY` | [aistudio.google.com](https://aistudio.google.com/app/apikey) → Get API key → Create API key |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase Dashboard → Project Settings → API → Project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase Dashboard → Project Settings → API → `anon` `public` key |
 
@@ -182,7 +182,7 @@ You should see the landing page. Click **"Get Started"** to create an account, t
 1. Push your code to GitHub
 2. Go to [vercel.com](https://vercel.com) and import your repository
 3. Add the three environment variables in the Vercel project settings:
-   - `ANTHROPIC_API_KEY`
+   - `GOOGLE_GEMINI_API_KEY`
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 4. Deploy
@@ -210,7 +210,7 @@ src/
 │   │   ├── history/page.tsx        # Past generations with search/filter
 │   │   └── profile/page.tsx        # Account info + theme settings
 │   ├── api/
-│   │   └── generate/route.ts       # POST endpoint → Anthropic streaming
+│   │   └── generate/route.ts       # POST endpoint → Gemini streaming
 │   ├── auth/
 │   │   └── callback/route.ts       # OAuth callback handler
 │   ├── globals.css                 # Tailwind + custom styles
@@ -226,7 +226,7 @@ src/
 │   │   ├── client.ts               # Browser Supabase client
 │   │   ├── server.ts               # Server Supabase client
 │   │   └── middleware.ts           # Auth session refresh + route protection
-│   ├── anthropic.ts                # System/user prompt builders
+│   ├── prompts.ts                  # System/user prompt builders
 │   └── utils.ts                    # cn(), formatDate(), countWords(), etc.
 ├── hooks/
 │   └── use-generations.ts          # TanStack Query hooks for CRUD
@@ -275,8 +275,8 @@ npm run lint     # Run ESLint
 | "Missing Supabase URL" error | Make sure `.env.local` exists and has valid values. Restart `npm run dev` after changing env vars. |
 | Sign-up doesn't work | Check Supabase Authentication → Providers → Email is enabled. Consider disabling "Confirm email" for development. |
 | Google OAuth redirects to error | Verify your redirect URI matches exactly: `https://<project>.supabase.co/auth/v1/callback` |
-| AI generation returns 401 | Your `ANTHROPIC_API_KEY` is invalid or expired. Get a new one from console.anthropic.com. |
-| AI generation returns 429 | You've hit the Anthropic rate limit. Wait a minute and try again. |
+| AI generation returns 401 | Your `GOOGLE_GEMINI_API_KEY` is invalid or expired. Get a new one from aistudio.google.com. |
+| AI generation returns 429 | You've hit the Gemini rate limit. Wait a minute and try again, or switch to Gemini 2.5 Flash Lite (higher rate limits). |
 | History page is empty | Content is only saved when you click the "Save" button after generation. |
 | Dark mode flickers on load | This is normal on first load — the theme is applied client-side after hydration. |
 
